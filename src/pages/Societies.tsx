@@ -20,7 +20,6 @@ import {
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Users, ExternalLink, Search } from "lucide-react";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
 interface SocietyEvent {
   id: string;
@@ -145,22 +144,10 @@ const mockEvents: SocietyEvent[] = [
   },
 ];
 
-const campuses = [
-  "All Campuses",
-  "Islamabad Campus",
-  "Lahore Campus",
-  "Wah Campus",
-  "Vehari Campus",
-  "Sahiwal Campus",
-  "Attock Campus",
-  "Abbottabad Campus",
-];
-
 const Societies = () => {
   const [events] = useState<SocietyEvent[]>(mockEvents);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedEventId, setSelectedEventId] = useState<string | null>(null);
-  const [selectedCampus, setSelectedCampus] = useState("All Campuses");
 
   const selectedEvent = events.find((event) => event.id === selectedEventId);
 
@@ -172,10 +159,8 @@ const Societies = () => {
         event.campus.toLowerCase().includes(searchQuery.toLowerCase());
 
       const matchesType = type === "All" || event.type === type;
-      
-      const matchesCampus = selectedCampus === "All Campuses" || event.campus === selectedCampus;
 
-      return matchesSearch && matchesType && matchesCampus;
+      return matchesSearch && matchesType;
     });
   };
 
@@ -192,30 +177,15 @@ const Societies = () => {
             Discover and participate in events organized by various student societies at COMSATS University.
           </p>
 
-          {/* Search and campus filter */}
-          <div className="flex flex-col gap-4 mb-6">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
-              <Input
-                placeholder="Search events, societies or campus..."
-                className="pl-10"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </div>
-            
-            <Select value={selectedCampus} onValueChange={setSelectedCampus}>
-              <SelectTrigger className="w-full">
-                <SelectValue placeholder="Select Campus" />
-              </SelectTrigger>
-              <SelectContent>
-                {campuses.map((campus) => (
-                  <SelectItem key={campus} value={campus}>
-                    {campus}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+          {/* Search */}
+          <div className="relative mb-6">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
+            <Input
+              placeholder="Search events, societies or campus..."
+              className="pl-10"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
           </div>
 
           {/* Tabs for filtering */}
