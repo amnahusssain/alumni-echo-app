@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import MainLayout from "@/components/layout/MainLayout";
 import { Button } from "@/components/ui/button";
@@ -155,7 +156,8 @@ const AlumniPortal = () => {
                 Hybrid
               </Button>
               <Button
-                variant={filterStyle === "Online" ? "secondary" : "outline"}
+                variant={filterStyle === "Online" ? "default" : "outline"}
+                className={filterStyle === "Online" ? "bg-green-500 hover:bg-green-600" : ""}
                 size="sm"
                 onClick={() => handleFilterChange("Online")}
               >
@@ -191,9 +193,10 @@ const AlumniPortal = () => {
                           job.style === "Hybrid"
                             ? "default"
                             : job.style === "Online"
-                            ? "secondary"
+                            ? "default"
                             : "outline"
                         }
+                        className={job.style === "Online" ? "bg-green-500 hover:bg-green-600" : ""}
                       >
                         {job.style}
                       </Badge>
@@ -201,8 +204,11 @@ const AlumniPortal = () => {
                   </CardHeader>
                   <CardContent>
                     <div className="text-sm mb-3">
-                      <p className="text-gray-700"><span className="font-medium">Location:</span> {job.location}</p>
-                      <p className="text-gray-700"><span className="font-medium">Salary:</span> {job.salary}</p>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        <p className="text-gray-700"><span className="font-medium">Location:</span> {job.location}</p>
+                        <p className="text-gray-700"><span className="font-medium">Salary:</span> {job.salary}</p>
+                        <p className="text-gray-700"><span className="font-medium">Working Hours:</span> {job.workingHours}</p>
+                      </div>
                     </div>
                   </CardContent>
                   <CardFooter>
@@ -230,13 +236,8 @@ const AlumniPortal = () => {
                 <div className="flex justify-between items-start">
                   <h3 className="text-lg font-semibold">{selectedJob.company}</h3>
                   <Badge
-                    variant={
-                      selectedJob.style === "Hybrid"
-                        ? "default"
-                        : selectedJob.style === "Online"
-                        ? "secondary"
-                        : "outline"
-                    }
+                    variant="default"
+                    className={selectedJob.style === "Online" ? "bg-green-500" : ""}
                   >
                     {selectedJob.style}
                   </Badge>
