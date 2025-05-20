@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import MainLayout from "@/components/layout/MainLayout";
 import { Button } from "@/components/ui/button";
@@ -244,7 +243,7 @@ const HomeFeed = () => {
                   variant="outline"
                   className="w-full text-left justify-start text-gray-500 bg-gray-100 hover:bg-gray-200"
                 >
-                  What's on your mind?
+                  Start a New Post
                 </Button>
               </DialogTrigger>
               <DialogContent className="sm:max-w-md">
@@ -296,32 +295,6 @@ const HomeFeed = () => {
               </DialogContent>
             </Dialog>
           </div>
-          <div className="flex justify-between border-t pt-3">
-            <Button
-              variant="ghost"
-              size="sm"
-              className="flex-1"
-              onClick={() => setIsCreatePostOpen(true)}
-            >
-              Photo
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="flex-1"
-              onClick={() => setIsCreatePostOpen(true)}
-            >
-              Video
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              className="flex-1"
-              onClick={() => setIsCreatePostOpen(true)}
-            >
-              Activity
-            </Button>
-          </div>
         </div>
 
         {/* Posts feed */}
@@ -369,7 +342,7 @@ const HomeFeed = () => {
               )}
 
               {/* Post actions */}
-              <div className="p-4 flex items-center justify-between border-t border-b">
+              <div className="p-4 flex items-center space-x-4 border-t border-b">
                 <Button
                   variant="ghost"
                   size="sm"
@@ -449,7 +422,7 @@ const HomeFeed = () => {
         </div>
 
         {/* Floating action button */}
-        <div className="fixed bottom-6 right-6">
+        <div className="fixed bottom-20 right-6">
           <Button
             size="lg"
             className="rounded-full w-14 h-14"

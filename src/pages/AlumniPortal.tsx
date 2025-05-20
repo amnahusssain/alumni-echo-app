@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import MainLayout from "@/components/layout/MainLayout";
 import { Button } from "@/components/ui/button";
@@ -128,7 +127,7 @@ const AlumniPortal = () => {
   };
 
   return (
-    <MainLayout title="Alumni Portal">
+    <MainLayout title="Alumni Job Portal">
       <div className="max-w-4xl mx-auto">
         <div className="bg-white p-6 rounded-lg shadow-md mb-6">
           <h2 className="text-xl font-semibold mb-4">Job Opportunities</h2>
@@ -156,7 +155,7 @@ const AlumniPortal = () => {
                 Hybrid
               </Button>
               <Button
-                variant={filterStyle === "Online" ? "default" : "outline"}
+                variant={filterStyle === "Online" ? "secondary" : "outline"}
                 size="sm"
                 onClick={() => handleFilterChange("Online")}
               >
@@ -181,7 +180,7 @@ const AlumniPortal = () => {
             ) : (
               filteredJobs.map((job) => (
                 <Card key={job.id} className="hover:shadow-md transition-shadow">
-                  <CardHeader className="pb-2">
+                  <CardHeader>
                     <div className="flex justify-between items-start">
                       <div>
                         <CardTitle className="text-lg">{job.title}</CardTitle>
@@ -200,22 +199,14 @@ const AlumniPortal = () => {
                       </Badge>
                     </div>
                   </CardHeader>
-                  <CardContent className="pb-2">
-                    <div className="grid grid-cols-2 gap-2 text-sm">
-                      <div>
-                        <p className="text-gray-500">Salary:</p>
-                        <p>{job.salary}</p>
-                      </div>
-                      <div>
-                        <p className="text-gray-500">Location:</p>
-                        <p>{job.location}</p>
-                      </div>
+                  <CardContent>
+                    <div className="text-sm mb-3">
+                      <p className="text-gray-700"><span className="font-medium">Location:</span> {job.location}</p>
+                      <p className="text-gray-700"><span className="font-medium">Salary:</span> {job.salary}</p>
                     </div>
                   </CardContent>
                   <CardFooter>
                     <Button
-                      variant="outline"
-                      size="sm"
                       className="w-full"
                       onClick={() => setSelectedJobId(job.id)}
                     >
@@ -251,34 +242,30 @@ const AlumniPortal = () => {
                   </Badge>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div className="space-y-2">
-                    <div>
-                      <Label className="text-gray-500">Salary</Label>
-                      <p className="font-medium">{selectedJob.salary}</p>
-                    </div>
-
-                    <div>
-                      <Label className="text-gray-500">Location</Label>
-                      <p className="font-medium">{selectedJob.location}</p>
-                    </div>
-
-                    <div>
-                      <Label className="text-gray-500">Working Hours</Label>
-                      <p className="font-medium">{selectedJob.workingHours}</p>
-                    </div>
+                <div className="space-y-3 border rounded-lg p-4 bg-gray-50">
+                  <div>
+                    <Label className="text-gray-500">Salary</Label>
+                    <p className="font-medium">{selectedJob.salary}</p>
                   </div>
 
-                  <div className="space-y-2">
-                    <div>
-                      <Label className="text-gray-500">Package</Label>
-                      <p className="font-medium">{selectedJob.package}</p>
-                    </div>
+                  <div>
+                    <Label className="text-gray-500">Location</Label>
+                    <p className="font-medium">{selectedJob.location}</p>
+                  </div>
 
-                    <div>
-                      <Label className="text-gray-500">Qualification</Label>
-                      <p className="font-medium">{selectedJob.qualification}</p>
-                    </div>
+                  <div>
+                    <Label className="text-gray-500">Working Hours</Label>
+                    <p className="font-medium">{selectedJob.workingHours}</p>
+                  </div>
+
+                  <div>
+                    <Label className="text-gray-500">Package</Label>
+                    <p className="font-medium">{selectedJob.package}</p>
+                  </div>
+
+                  <div>
+                    <Label className="text-gray-500">Qualification</Label>
+                    <p className="font-medium">{selectedJob.qualification}</p>
                   </div>
                 </div>
 
